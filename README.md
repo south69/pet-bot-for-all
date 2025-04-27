@@ -46,7 +46,6 @@
 │   ├── irregular_verbs.csv
 │   ├── habits_task.csv
 │   ├── habits_log.csv
-│   ├── irregular_verbs.csv
 │   ├── irregular_verbs.db
 │   └── habits.db
 ├── config.py              # ← загружает токен из .env
