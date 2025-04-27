@@ -6,6 +6,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
 from aiogram.client.default import DefaultBotProperties
 from sql_lite.init_db import create_irregular_verbs_table
+from sql_lite.init_habits_db import create_habits_tables
 
 # НУЖНО ИСПРАВИТЬ ОБРАБОТЧИКИ В БЛОКЕ WORKOUTS, ПЕРЕСКАКИВАЕТ ИНОГДА НА GAME МЕНЮ 
 
@@ -26,6 +27,7 @@ from main_keyboards import main_menu
 async def main():
     logging.basicConfig(level=logging.INFO)
     create_irregular_verbs_table()
+    create_habits_tables()
 
     bot = Bot(
         token=api_token_tg, 
