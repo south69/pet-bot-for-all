@@ -40,9 +40,15 @@
 │       └── keyboards_reminders.py
 ├── sql_lite
 │   ├── init_db.py
+│   ├── init_habits_db.py
 │   ├── irregular_verbs_repository.py
+│   ├── habits_repository.py
 │   ├── irregular_verbs.csv
-│   └── irregular_verbs.db
+│   ├── habits_task.csv
+│   ├── habits_log.csv
+│   ├── irregular_verbs.csv
+│   ├── irregular_verbs.db
+│   └── habits.db
 ├── config.py              # ← загружает токен из .env
 ├── config_functions.py    # флаги включения модулей
 ├── handler_main_menu.py
