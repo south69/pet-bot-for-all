@@ -1,5 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message
+from aiogram.filters import CommandStart
+
 from main_keyboards import main_menu
 
 from functions.reminders.keyboards_reminders import reminders_menu
@@ -13,11 +15,18 @@ class HandlerMainMenu:
     def __init__(self):
         self.router = Router()
 
+        self.router.message.register(self.start_handler, CommandStart())
+
         self.router.message.register(self.reminders_handler, lambda message: message.text == "Reminders")
         self.router.message.register(self.habits_handler, lambda message: message.text == "Habits")
         self.router.message.register(self.games_handler, lambda message: message.text == "Games")
         self.router.message.register(self.workouts_handler, lambda message: message.text == 'Workouts')
         self.router.message.register(self.help_handler, lambda message: message.text == "Help")
+
+    async def start_handler(self, message:Message):
+        await message.answer(
+            f"Hi, {message.from_user.username}! I'm bot-helper for all. How can I help you?", reply_markup=main_menu
+        )
 
     async def reminders_handler(self, message: Message):    
         await message.answer('Go to Reminders', reply_markup=reminders_menu)
