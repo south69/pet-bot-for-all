@@ -1,6 +1,6 @@
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from sql_lite.irregular_verbs_repository import IrregularVerbsRepository
-from functions.games.game_irregular_verbs.keyboard_game_irregular_verbs import games_irregular_verbs_choose_level
+from functions.games.game_irregular_verbs.keyboard_game_irregular_verbs import games_irregular_verbs_menu, games_irregular_verbs_choose_level
 
 
 class IrregularVerbsGame:

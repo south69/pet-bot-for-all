@@ -10,7 +10,7 @@ from sql_lite.init_habits_db import create_habits_tables
 
 # НУЖНО ИСПРАВИТЬ ОБРАБОТЧИКИ В БЛОКЕ WORKOUTS, ПЕРЕСКАКИВАЕТ ИНОГДА НА GAME МЕНЮ 
 
-from config import api_token_tg
+from config import api_token_tg 
 
 from config_functions import (
     ENABLE_REMINDERS,
