@@ -15,16 +15,18 @@ class HandlerHelpMenu():
 
     
     async def about_bot_handler(self, message: Message):
-        await message.answer("It's a Bot-helper. He work only for help anyone people, who know about him", reply_markup=help_menu)
+        await message.answer("It's a Bot-helper. He work only for help anyone people, who know about him." \
+        "You can see the ditails in GitHub" \
+        "https://github.com/south69/pet-bot-for-all", reply_markup=help_menu)
     
     async def suggest_update_handler(self, message: Message):
-        await message.answer('"Suggest update" in progress', reply_markup=help_menu)
+        await message.answer('Try to connect @south_dev', reply_markup=help_menu)
 
     async def bug_report_handler(self, message: Message):
-        await message.answer('"Bug report" in progress', reply_markup=help_menu)
+        await message.answer('Try to connect @south_dev', reply_markup=help_menu)
 
     async def ask_developer_handler(self, message: Message):
-        await message.answer('Try to connect @my_nick_in_telegram', reply_markup=help_menu)
+        await message.answer('Try to connect @south_dev', reply_markup=help_menu)
     
     async def back_main_menu_handler(self, message: Message):
         await message.answer('Go to main menu', reply_markup=main_menu)
