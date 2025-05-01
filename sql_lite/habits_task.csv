@@ -1,1 +1,1 @@
-id_habit, name_habit, time_notification, last_notofication, status_habit, user_creator, user_who_use_habit, created_at, updated_at, deleted_at
+id_habit, name_habit, time_notification, last_notification, status_habit, user_creator, user_who_use_habit, created_at, updated_at, deleted_at
