@@ -23,5 +23,5 @@ def create_habits_tables():
 
     print('DB initialized with habits tables')
 
-if __name__ == "main":
+if __name__ == "__main__":
     create_habits_tables()
