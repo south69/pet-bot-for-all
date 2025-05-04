@@ -2,14 +2,14 @@ from aiogram import Router
 from aiogram.types import Message
 from main_keyboards import main_menu
 from functions.habits.keyboards_habits import habits_menu
-from sql_lite.habits_repository import HabitsRepository
+from functions.habits.habits_repository import HabitsRepository
 from functions.habits.handler_add_habit import HandlerAddHabit
 
 class HandlerHabitsMenu():
     def __init__(self):
         self.router = Router()
 
-        repo = HabitsRepository(db_path="sql_lite/habits.db")
+        repo = HabitsRepository()
         add_habit = HandlerAddHabit(repository=repo)
         self.router.include_router(add_habit.router)
 

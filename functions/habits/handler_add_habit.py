@@ -8,7 +8,8 @@ from datetime import datetime
 from functions.habits.fsm_add_habit import AddHabitStates
 from functions.habits.keyboards_add_habit import confirm_habit_kb, status_choise_kb
 from functions.habits.keyboards_habits import habits_menu
-from sql_lite.habits_repository import HabitsRepository
+from functions.habits.habits_repository import HabitsRepository
+
 
 class HandlerAddHabit:
     def __init__(self, repository: HabitsRepository):
@@ -35,7 +36,7 @@ class HandlerAddHabit:
         await state.set_state(AddHabitStates.waiting_for_name)
 
     async def habit_get_name(self, message: Message, state: FSMContext):
-        await state.update_data(habit_name=message.text)
+        await state.update_data(name=message.text)
         await message.answer("Choose a time, like 08:00")
         await state.set_state(AddHabitStates.waiting_for_time)
 
@@ -45,15 +46,15 @@ class HandlerAddHabit:
         await state.set_state(AddHabitStates.waiting_for_status)
 
     async def habit_get_status(self, message: Message, state: FSMContext):
-        status_habit = "active" if message.text == "Now" else "pause"
-        await state.update_data(status_habit=status_habit)
+        status = "active" if message.text == "Now" else "pause"
+        await state.update_data(status=status)
 
         data = await state.get_data()
         summary = (
             f"<b>Check data:</b>\n"
-            f"Name: {data['habit_name']}\n"
+            f"Name: {data['name']}\n"
             f"Time: {data['time_notification']}\n"
-            f"Status: {data['status_habit']}"
+            f"Status: {data['status']}"
         )
 
         await message.answer(summary, reply_markup=confirm_habit_kb)
@@ -66,13 +67,15 @@ class HandlerAddHabit:
         if text == "Save":
             
             username = message.from_user.username
+            user_id = message.from_user.id
             created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             self.repository.add_habit(
                 username=username,
-                habit_name=data['habit_name'],
+                user_id=user_id,
+                name=data['name'],
                 time_notification=data['time_notification'],
-                status_habit=data['status_habit']
+                status=data['status']
             )
 
             await message.answer("Habit saved", reply_markup=habits_menu)

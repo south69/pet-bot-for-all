@@ -16,6 +16,7 @@ class HandlerGameIrregularVerbs():
 
     
     async def start_play_irregular_verbs(self, message: Message):
+        print(f"[DEBUG] message.text = {message.text!r}") #УБРАТЬ
         await message.answer("Choose the level for game", reply_markup=games_irregular_verbs_choose_level)
 
     async def statistics_irregular_verbs(self, message: Message):
@@ -42,7 +43,7 @@ class HandlerGameIrregularVerbs():
 class HandlerLevelGameIrregularVerbs():
     def __init__(self):
         self.router = Router()
-        self.db = IrregularVerbsRepository("sql_lite/irregular_verbs.db")
+        self.db = IrregularVerbsRepository()
         self.game = IrregularVerbsGame(self.db)
 
         # Выбор уровня
