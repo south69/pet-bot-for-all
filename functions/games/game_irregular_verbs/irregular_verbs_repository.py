@@ -28,6 +28,55 @@ class IrregularVerbsRepository:
                 "translate": row[4]
             }
         return None
+    
+    def create_log_irregular_verb(self, *, user_id, username, game_id, game_name,
+                                  level_game, word_given, word_answered, correct_flg):
+        with self.conn.cursor() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO bfa_games.games_log (
+                    user_id, username, game_id, game_name,
+                    level_game, word_given, word_answered, 
+                    correct_flg
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                """, (
+                    user_id, username, game_id, game_name,
+                    level_game, word_given, word_answered, 
+                    correct_flg
+                )
+            )
+
+    def get_user_statistics(self, user_id: int, period: str = "all"):
+        date_filter = ""
+        if period == "today":
+            date_filter = "AND played_at::date = CURRENT_DATE"
+        elif period == "week":
+            date_filter = "AND played_at >= NOW() - INTERVAL '7 days'"
+        elif period == "month":
+            date_filter = "AND played_at >= NOW() - INTERVAL '1 month'"
+        
+        with self.conn.cursor() as cursor:
+            cursor.execute(f"""
+                    SELECT 
+                        COUNT(*) AS total_games,
+                        COUNT(*) FILTER (WHERE correct_flg) AS correct_answers,
+                        level_game
+                        FROM bfa_games.games_log
+                        WHERE user_id = %s AND game_name = 'Irregular Verbs'
+                        {date_filter}
+                        GROUP BY level_game
+                    """, (user_id,))
+            rows = cursor.fetchall()
+
+        stats = []
+        for row in rows:
+            total, correct, level = row
+            percent = round(correct / total * 100) if total > 0 else 0
+            stats.append((level, total, correct, percent))
+        return stats
 
     def close(self):
         self.conn.close()
+
+    

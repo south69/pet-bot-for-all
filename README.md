@@ -6,7 +6,8 @@
 
 - Python 3.13
 - aiogram 3.17.0
-- SQLite
+- Postgres
+- Docker
 - dotenv
 
 ## Функциональность

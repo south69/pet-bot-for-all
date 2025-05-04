@@ -6,6 +6,9 @@ from config import POSTGRES_URL
 from functions.games.game_irregular_verbs.keyboard_game_irregular_verbs import games_irregular_verbs_menu, games_irregular_verbs_choose_level
 from functions.games.game_irregular_verbs.irregular_verbs_repository import IrregularVerbsRepository
 
+GAME_ID = 1
+GAME_NAME = "Irregular Verbs"
+
 class IrregularVerbsGame:
     def __init__(self, db: IrregularVerbsRepository):
         self.db = db
@@ -106,6 +109,24 @@ class IrregularVerbsGame:
         
         await message.answer("Result:\n" + "\n".join(results))
 
+        # Логирование результатов игры
+        for i in range(expected_steps):
+            answer = user_answers[i]
+            correct_answer = correct[i]
+            is_correct = answer == correct_answer
+
+            self.db.create_log_irregular_verb(
+                user_id=message.from_user.id,
+                username=message.from_user.username,
+                game_id=GAME_ID,
+                game_name=GAME_NAME,
+                level_game=level,
+                word_given=correct_answer,
+                word_answered=answer,
+                correct_flg=is_correct
+            )
+
+
         await self.start_game(message, level)
 
     async def send_correct_answer(self, message: Message, state: dict):
@@ -116,103 +137,3 @@ class IrregularVerbsGame:
             f"past_simple_v2: <b>{verb['past_simple_v2']}</b>\n"
             f"past_participle_v3: <b>{verb['past_participle_v3']}</b>\n"
         )
-
-    #     form_map = {
-    #         "Easy": "infinitive",
-    #         "Medium": "past_simple_v2",
-    #         "Hard": "past_participle_v3"
-    #     }
-
-    #     form_field = form_map.get(level, "infinitive")
-    #     correct_answer = verb[form_field].lower()
-
-    #     # Запоминаем состояние игры
-    #     self.user_states[user_id] = {
-    #         "in_game": True,
-    #         "correct_answer": correct_answer,
-    #         "verb": verb,
-    #         "level": level
-    #     }
-
-    #     await message.answer(
-    #         f"How translate (infinitive): <b>{verb['translate']}</b>?",
-    #         reply_markup=self.session_keyboard
-    #     )
-
-    # async def check_answer(self, message: Message):
-    #     user_id = message.from_user.id
-    #     state = self.user_states.get(user_id)
-
-    #     if not state or not state.get("in_game"):
-    #         await message.answer("Start a new game. Choose level!")
-    #         return
-        
-    #     user_answer = message.text.strip().lower()
-
-    #     if user_answer == "go back":
-    #         self.user_states[user_id]["in_game"] = False
-    #         await message.answer(
-    #             "You've left the game. Choose level again",
-    #             reply_markup=games_irregular_verbs_choose_level
-    #         )
-    #         return
-        
-    #     if user_answer == "don't know":
-    #         await message.answer(
-    #             f"Correct answer was: <b>{state['correct_answer']}</b>"
-    #         )
-    #         await self.start_game(message, state["level"])
-    #         return
-        
-    #     if user_answer == state["correct_answer"]:
-    #         await message.answer("✅ Yes, correct!")
-    #     else:
-    #         await message.answer(
-    #             f"❌ Wrong! Correct answer was: <b>{state['correct_answer']}</b>"
-    #         )
-
-    #     await self.start_game(message, state["level"])
-
-
-
-# class IrregularVerbsGame:
-#     def __init__(self, db):
-#         self.db = db
-#         self.user_states = {} # user_id: {"correct_answer": "go", "verb": {...}}
-
-#     async def start_game(self, message: Message, level: str):
-#         user_id = message.from_user.id
-#         verb = self.db.get_random_verb()
-
-#         if not verb:
-#             await message.answer("Connection to DB is lost. Try again later")
-#             return
-        
-#         self.user_states[user_id] = {
-#             "correct_answer": verb["infinitive"].lower(),
-#             "verb": verb,
-#             "level": level
-#         }
-
-#         await message.answer(
-#             f"How translate (infinitive): <b>{verb['translate']}</b>?",
-#             reply_markup=games_irregular_verbs_choose_level
-#         )
-
-#     async def check_answer(self, message: Message):
-#         user_id = message.from_user.id
-#         state = self.user_states.get(user_id)
-
-#         if not state:
-#             await message.answer("Try to start game, choose level")
-#             return
-
-#         user_answer = message.text.strip().lower()
-#         correct_answer = state["correct_answer"]
-
-#         if user_answer == correct_answer:
-#             await message.answer("✅ Yes, correct!")
-#         else:
-#             await message.answer(f"❌ Wrong! Correct answer: <b>{correct_answer}</b>")
-
-#         await self.start_game(message, state["level"])
