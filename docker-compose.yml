@@ -10,19 +10,17 @@ services:
         volumes:
             - pgdata:/var/lib/postgresql/data
             - ./initdb:/docker-entrypoint-initdb.d 
-        ports:
-          - "15432:5432"
         networks:
           - bfa-net
-    # bot:
-    #   build: .
-    #   restart: always
-    #   env_file:
-    #     - .env
-    #   depends_on:
-    #     - postgres
-    #   networks:
-    #     - bfa-net
+    bot:
+      build: .
+      restart: always
+      env_file:
+        - .env
+      depends_on:
+        - postgres
+      networks:
+        - bfa-net
 
 volumes:
   pgdata:

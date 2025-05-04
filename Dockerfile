@@ -1,17 +1,26 @@
-# Базовый образ с Python
+# Базовый образ
 FROM python:3.11-slim
 
-# Установка зависимостей для pip (wheel, и т.п.)
-RUN apt-get update && apt-get install -y gcc libpq-dev
+# Установка необходимых системных пакетов
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    libffi-dev \
+    libssl-dev \
+    curl \
+    build-essential \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-# Рабочая директория внутри контейнера
+# Рабочая директория
 WORKDIR /app
 
-# Копируем файлы проекта в контейнер
+# Копируем файлы проекта
 COPY . .
 
 # Устанавливаем зависимости
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Указываем команду запуска
+# Запуск
 CMD ["python", "main.py"]

@@ -26,3 +26,4 @@ venv/
 # Другое
 *.bak
 *.tmp
+help_dev.gitignore/
