@@ -1,9 +1,12 @@
 from aiogram import Router
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, BufferedInputFile
 from main_keyboards import main_menu
 from functions.games.keyboards_games import games_menu
 from functions.games.game_irregular_verbs.keyboard_game_irregular_verbs import games_irregular_verbs_menu, games_irregular_verbs_choose_level, stats_repiod_kb
 from functions.games.game_irregular_verbs.game_irregular_verbs_service import IrregularVerbsGame, IrregularVerbsRepository
+
+import matplotlib.pyplot as plt
+from io import BytesIO
 
 class HandlerGameIrregularVerbs():
     def __init__(self):
@@ -36,7 +39,33 @@ class HandlerGameIrregularVerbs():
         for level, total, correct, percent in stats:
             lines.append(f"• *{level}*: {correct}/{total} correct ({percent}%)")
 
-        await callback.message.edit_text("\n".join(lines), parse_mode="Markdown")
+        # Построение графика
+        levels = [level for level, total, correct, percent in stats]
+        percents = [percent for level, total, correct, perctnt in stats]
+
+        fig, ax = plt.subplots()
+        ax.bar(levels, percents, color='skyblue')
+        ax.set_title(f"Correct answers by level ({period.capitalize()})")
+        ax.set_ylabel("Correct answers (%)")
+        ax.set.ylim(0, 100)
+
+        # Сохранение графика в буффер обмена
+        buf = BytesIO()
+        plt.savefig(buf, format='png')
+        plt.close(fig)
+        buf.seek(0)
+
+        # Отправка графика
+        image = BufferedInputFile(buf.read(), filename="stats.png")
+        await callback.message.answer_photo(
+            image,
+            caption="\n".join(lines),
+            parse_mode="Markdown"
+        )
+
+
+
+        # await callback.message.edit_text("\n".join(lines), parse_mode="Markdown")
 
         # await message.answer("Statistics in progress", reply_markup=games_irregular_verbs_menu)
 

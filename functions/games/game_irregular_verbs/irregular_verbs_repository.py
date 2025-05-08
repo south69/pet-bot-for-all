@@ -1,6 +1,9 @@
 import psycopg2
 import random
 import os
+import matplotlib.pyplot as plt
+from io import BytesIO
+from aiogram.types import BufferedInputFile
 
 from config import POSTGRES_URL
 
