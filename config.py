@@ -5,7 +5,8 @@ load_dotenv()
 
 # Токен бота 
 
-api_token_tg = os.getenv("API_TOKEN_TG")
+api_token_tg = os.getenv("API_TOKEN_TG_DEV")
+# api_token_tg = os.getenv("API_TOKEN_TG_PROD")
 
 # Подключение к БД
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
