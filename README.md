@@ -63,8 +63,9 @@ Version 1.1
 ├── .env # не публикуется
 ├── .gitignore # не публикуется
 ├── README.md
+├── Dockerfile
+├── docker-compose.yml
 ├── handler_main_menu.py
 ├── main.py
 ├── main_keyboards.py
 └── requirements.txt
-
