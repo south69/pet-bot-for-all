@@ -32,7 +32,7 @@ class HandlerAddHabit:
         await message.answer("Habit creation cancelled", reply_markup=habits_menu)
     
     async def start_add_habit(self, message: Message, state: FSMContext):
-        await message.answer("Write habit name", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Please enter the name of the habit", reply_markup=ReplyKeyboardRemove())
         await state.set_state(AddHabitStates.waiting_for_name)
 
     async def habit_get_name(self, message: Message, state: FSMContext):
@@ -42,7 +42,7 @@ class HandlerAddHabit:
 
     async def habit_get_time(self, message: Message, state: FSMContext):
         await state.update_data(time_notification=message.text)
-        await message.answer("Activate now or later?", reply_markup=status_choise_kb)
+        await message.answer("Would you like to activate it now or later?", reply_markup=status_choise_kb)
         await state.set_state(AddHabitStates.waiting_for_status)
 
     async def habit_get_status(self, message: Message, state: FSMContext):
@@ -51,7 +51,7 @@ class HandlerAddHabit:
 
         data = await state.get_data()
         summary = (
-            f"<b>Check data:</b>\n"
+            f"<b>Please confirm the details:</b>\n"
             f"Name: {data['name']}\n"
             f"Time: {data['time_notification']}\n"
             f"Status: {data['status']}"
@@ -78,15 +78,15 @@ class HandlerAddHabit:
                 status=data['status']
             )
 
-            await message.answer("Habit saved", reply_markup=habits_menu)
+            await message.answer("Habit has been saved", reply_markup=habits_menu)
             await state.clear()
 
         if text == "Edit":
-            await message.answer("Get start again! Write habit name: ")
+            await message.answer("Get start again! Please enter the name of the habit: ")
             await state.set_state(AddHabitStates.waiting_for_name)
         
         elif text == "Cancel":
-            await message.answer("Create habit cancel", reply_markup=habits_menu)
+            await message.answer("Habit creaton cancelled", reply_markup=habits_menu)
 
         else:
             await message.answer("Please choose action with buttons")

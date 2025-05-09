@@ -16,7 +16,7 @@ class HandlerHelpMenu():
     
     async def about_bot_handler(self, message: Message):
         await message.answer(
-            "I am a helper bot, created to assist those who know about me.\n"
+            "I'm a helper bot created to assist those who know about me.\n"
             "You can find more details about me on \n"
             "<a href='https://github.com/south69/pet-bot-for-all'>GitHub Repository</a>",
             reply_markup=help_menu,
@@ -24,13 +24,13 @@ class HandlerHelpMenu():
             )
     
     async def suggest_update_handler(self, message: Message):
-        await message.answer('Try to connect @south_dev', reply_markup=help_menu)
+        await message.answer('Please contact @south_dev', reply_markup=help_menu)
 
     async def bug_report_handler(self, message: Message):
-        await message.answer('Try to connect @south_dev', reply_markup=help_menu)
+        await message.answer('Please contact @south_dev', reply_markup=help_menu)
 
     async def ask_developer_handler(self, message: Message):
-        await message.answer('Try to connect @south_dev', reply_markup=help_menu)
+        await message.answer('Please contact @south_dev', reply_markup=help_menu)
     
     async def back_main_menu_handler(self, message: Message):
         await message.answer('Go to main menu', reply_markup=main_menu)

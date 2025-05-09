@@ -25,7 +25,7 @@ class HandlerMainMenu:
 
     async def start_handler(self, message:Message):
         await message.answer(
-            f"Hi, {message.from_user.username}! I'm bot assist for all. How can I help you?", reply_markup=main_menu
+            f"Hi, {message.from_user.username}! I'm your bot assist for all. How can I help you today?", reply_markup=main_menu
         )
 
     async def reminders_handler(self, message: Message):    

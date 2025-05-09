@@ -15,16 +15,16 @@ class HandlerRemindersMenu():
 
     
     async def add_habit_handler(self, message: Message):
-        await message.answer("In progress", reply_markup=reminders_menu)
+        await message.answer("Feature in development", reply_markup=reminders_menu)
 
     async def change_habit_handler(self, message: Message):
-        await message.answer("In progress", reply_markup=reminders_menu)
+        await message.answer("Feature in development", reply_markup=reminders_menu)
 
     async def delete_habit_handler(self, message: Message):
-        await message.answer("In progress", reply_markup=reminders_menu)
+        await message.answer("Feature in development", reply_markup=reminders_menu)
 
     async def show_my_habits_handler(self, message: Message):
-        await message.answer("In progress", reply_markup=reminders_menu)
+        await message.answer("Feature in development", reply_markup=reminders_menu)
 
     
     async def back_main_menu_handler(self, message: Message):

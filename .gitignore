@@ -7,3 +7,5 @@ help_dev.gitignore/check_connect_db.py
 help_dev.gitignore/do_in_habit.md
 help_dev.gitignore/project_structure.md
 project_structure.md
+create_txt_for_ai.py
+project_dump.txt

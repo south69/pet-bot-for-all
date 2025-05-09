@@ -61,7 +61,7 @@ class IrregularVerbsGame:
         state = self.user_states.get(user_id)
 
         if not state or not state.get("in_game"):
-            await message.answer("Start a new game. Choose level!")
+            await message.answer("Start a new game by choose a level again")
             return
         
         user_input  = message.text.strip().lower()
@@ -69,7 +69,7 @@ class IrregularVerbsGame:
         if user_input  == "go back":
             state["in_game"] = False
             await message.answer(
-                "You've left the game. Choose level again",
+                "You've left the game. Please choose a level again",
                 reply_markup=games_irregular_verbs_choose_level
             )
             return
@@ -107,7 +107,7 @@ class IrregularVerbsGame:
             result = "✅" if user_answers[i] == correct[i] else f"❌ ({correct[i]})"
             results.append(f"{i + 1}) {user_answers[i]} {result}")
         
-        await message.answer("Result:\n" + "\n".join(results))
+        await message.answer("Your result:\n" + "\n".join(results))
 
         # Логирование результатов игры
         for i in range(expected_steps):
@@ -132,7 +132,7 @@ class IrregularVerbsGame:
     async def send_correct_answer(self, message: Message, state: dict):
         verb = state["verb"]
         await message.answer(
-            f"Correct forms:\n"
+            f"The correct forms are:\n"
             f"Infinitive: <b>{verb['infinitive']}</b>\n"
             f"past_simple_v2: <b>{verb['past_simple_v2']}</b>\n"
             f"past_participle_v3: <b>{verb['past_participle_v3']}</b>\n"

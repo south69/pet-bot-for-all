@@ -19,10 +19,10 @@ class HandlerWorkoutsMenu():
         await message.answer("Go to choose a training", reply_markup=start_workout_choose_menu)
 
     async def progress_workouts_handler(self, message: Message):
-        await message.answer("In progress", reply_markup=workouts_menu)
+        await message.answer("Feature in development", reply_markup=workouts_menu)
 
     async def settings_workouts_handler(self, message: Message):
-        await message.answer("Go to settings workout", reply_markup=settings_workout_menu)
+        await message.answer("Go to workout settings", reply_markup=settings_workout_menu)
     
     async def back_main_menu_handler(self, message: Message):
         await message.answer('Go to main menu', reply_markup=main_menu)

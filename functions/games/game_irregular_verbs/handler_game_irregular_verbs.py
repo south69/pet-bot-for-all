@@ -32,7 +32,7 @@ class HandlerGameIrregularVerbs():
         repo.close()
 
         if not stats:
-            await callback.message.edit_text("Don't have stats in period")
+            await callback.message.edit_text("No statistics available for this period")
             return
 
         lines = [f"Statistics: *{period.upper()}*"]
