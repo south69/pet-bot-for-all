@@ -4,7 +4,7 @@ Version 1.1
 
 ## Стек
 
-- Python 3.13
+- Python 3.11
 - aiogram 3.17.0
 - Postgres
 - Docker

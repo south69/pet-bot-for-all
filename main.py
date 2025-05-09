@@ -5,9 +5,9 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.default import DefaultBotProperties
 
-from config.config import api_token_tg 
+from config import api_token_tg 
 
-from config.config_functions import (
+from config_functions import (
     ENABLE_REMINDERS,
     ENABLE_HABITS,
     ENABLE_GAMES,

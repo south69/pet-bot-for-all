@@ -3,7 +3,7 @@ from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 import psycopg2
 import os
 
-from config.config import POSTGRES_URL
+from config import POSTGRES_URL
 from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu, games_irregular_verbs_choose_level
 from features.games.irregular_verbs.repo import IrregularVerbsRepository
 

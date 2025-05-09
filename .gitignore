@@ -2,6 +2,7 @@
 __pycache__
 *.pyc
 .env
+.env_2
 generate_readme.py
 help_dev.gitignore/check_connect_db.py
 help_dev.gitignore/do_in_habit.md
