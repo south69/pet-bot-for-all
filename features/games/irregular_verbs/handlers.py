@@ -1,9 +1,9 @@
 from aiogram import Router
 from aiogram.types import Message, CallbackQuery, BufferedInputFile
 from main_keyboards import main_menu
-from functions.games.keyboards_games import games_menu
-from functions.games.game_irregular_verbs.keyboard_game_irregular_verbs import games_irregular_verbs_menu, games_irregular_verbs_choose_level, stats_repiod_kb
-from functions.games.game_irregular_verbs.game_irregular_verbs_service import IrregularVerbsGame, IrregularVerbsRepository
+from features.games.keyboards import games_menu
+from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu, games_irregular_verbs_choose_level, stats_repiod_kb
+from features.games.irregular_verbs.service import IrregularVerbsGame, IrregularVerbsRepository
 
 import matplotlib.pyplot as plt
 from io import BytesIO

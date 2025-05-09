@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message
 from main_keyboards import main_menu
-from functions.reminders.keyboards_reminders import reminders_menu
+from features.reminders.keyboards import reminders_menu
 
 class HandlerRemindersMenu():
     def __init__(self):

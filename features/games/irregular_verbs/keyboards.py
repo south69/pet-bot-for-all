@@ -1,5 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
-from functions.games.keyboards_games import games_menu
+from features.games.keyboards import games_menu
 from main_keyboards import main_menu
 
 games_irregular_verbs_menu = ReplyKeyboardMarkup(

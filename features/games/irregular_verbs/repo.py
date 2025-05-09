@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 from aiogram.types import BufferedInputFile
 
-from config import POSTGRES_URL
+from config.config import POSTGRES_URL
 
 class IrregularVerbsRepository:
     def __init__(self):

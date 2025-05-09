@@ -1,6 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-# from functions.games.keyboards_games import games_menu
-from functions.workouts.keyboards_workouts import workouts_menu
+from features.workouts.keyboards import workouts_menu
 from main_keyboards import main_menu
 
 settings_workout_menu = ReplyKeyboardMarkup(

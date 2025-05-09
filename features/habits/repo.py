@@ -3,7 +3,7 @@ import random
 import os
 from datetime import datetime
 
-from config import POSTGRES_URL
+from config.config import POSTGRES_URL
 
 
 class HabitsRepository:

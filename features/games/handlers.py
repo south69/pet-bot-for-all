@@ -1,8 +1,8 @@
 from aiogram import Router
 from aiogram.types import Message
 from main_keyboards import main_menu
-from functions.games.keyboards_games import games_menu
-from functions.games.game_irregular_verbs.keyboard_game_irregular_verbs import games_irregular_verbs_menu
+from features.games.keyboards import games_menu
+from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu
 
 class HandlerGamesMenu():
     def __init__(self):

@@ -5,9 +5,9 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.default import DefaultBotProperties
 
-from config import api_token_tg 
+from config.config import api_token_tg 
 
-from config_functions import (
+from config.config_functions import (
     ENABLE_REMINDERS,
     ENABLE_HABITS,
     ENABLE_GAMES,
@@ -17,7 +17,6 @@ from config_functions import (
 
 from handler_main_menu import HandlerMainMenu
 from main_keyboards import main_menu
-# from functions.help.handler_help_menu import HandlerHelpMenu
 
 async def main():
     logging.basicConfig(level=logging.INFO)
@@ -35,7 +34,7 @@ async def main():
     # REMINDERS
     if ENABLE_REMINDERS:
         try:
-            from functions.reminders.handler_reminders_menu import HandlerRemindersMenu
+            from features.reminders.handler_reminders_menu import HandlerRemindersMenu
             handler_reminders_menu = HandlerRemindersMenu()
             dp.include_router(handler_reminders_menu.router)
         except Exception as e:
@@ -44,7 +43,7 @@ async def main():
     # HABITS
     if ENABLE_HABITS:
         try:
-            from functions.habits.handler_habits_menu import HandlerHabitsMenu
+            from features.habits.handlers import HandlerHabitsMenu
             handler_habits_menu = HandlerHabitsMenu()
             dp.include_router(handler_habits_menu.router)
         except Exception as e:
@@ -53,7 +52,7 @@ async def main():
     # GAMES
     if ENABLE_GAMES:
         try:
-            from functions.games.handler_games_menu import HandlerGamesMenu
+            from features.games.handlers import HandlerGamesMenu
             handler_games_menu = HandlerGamesMenu()
             dp.include_router(handler_games_menu.router)
         except Exception as e:
@@ -61,7 +60,7 @@ async def main():
 
         # Games - Irregular Verbs
         try:
-            from functions.games.game_irregular_verbs.handler_game_irregular_verbs import HandlerGameIrregularVerbs
+            from features.games.irregular_verbs.handlers import HandlerGameIrregularVerbs
             handler_game_irregular_verbs = HandlerGameIrregularVerbs()
             dp.include_router(handler_game_irregular_verbs.router)
         except Exception as e:
@@ -69,7 +68,7 @@ async def main():
 
         # Games - Irregular Verbs - Level
         try:
-            from functions.games.game_irregular_verbs.handler_game_irregular_verbs import HandlerLevelGameIrregularVerbs
+            from features.games.irregular_verbs.handlers import HandlerLevelGameIrregularVerbs
             handler_level_game_irregular_verbs = HandlerLevelGameIrregularVerbs()
             dp.include_router(handler_level_game_irregular_verbs.router)
         except Exception as e:
@@ -78,7 +77,7 @@ async def main():
     # HELP
     if ENABLE_WORKOUTS:
         try:
-            from functions.workouts.handler_workouts_menu import HandlerWorkoutsMenu
+            from features.workouts.handlers import HandlerWorkoutsMenu
             handler_workouts_menu = HandlerWorkoutsMenu ()
             dp.include_router(handler_workouts_menu.router)
         except Exception as e:
@@ -86,7 +85,7 @@ async def main():
 
         # Workouts - settings_workouts
         try:
-            from functions.workouts.settings_workout.handler_settings_workout import HandlerSettingsWorkout
+            from features.workouts.settings_workout.handlers import HandlerSettingsWorkout
             handler_settings_workout = HandlerSettingsWorkout()
             dp.include_router(handler_settings_workout.router)
         except Exception as e:
@@ -94,7 +93,7 @@ async def main():
 
         # Workouts - start_workouts
         try:
-            from functions.workouts.start_workout.handler_start_workout import HandlerStartWorkoutMenu
+            from features.workouts.start_workout.handler import HandlerStartWorkoutMenu
             handler_start_workout_menu = HandlerStartWorkoutMenu()
             dp.include_router(handler_start_workout_menu.router)
         except Exception as e:
@@ -104,7 +103,7 @@ async def main():
     # HELP
     if ENABLE_HELP:
         try:
-            from functions.help.handler_help_menu import HandlerHelpMenu
+            from features.help.handler import HandlerHelpMenu
             handler_help_menu = HandlerHelpMenu()
             dp.include_router(handler_help_menu.router)
         except Exception as e:

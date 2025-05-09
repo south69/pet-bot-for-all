@@ -4,11 +4,11 @@ from aiogram.filters import CommandStart
 
 from main_keyboards import main_menu
 
-from functions.reminders.keyboards_reminders import reminders_menu
-from functions.habits.keyboards_habits import habits_menu
-from functions.games.keyboards_games import games_menu
-from functions.workouts.keyboards_workouts import workouts_menu
-from functions.help.keyboards_help import help_menu
+from features.reminders.keyboards import reminders_menu
+from features.habits.keyboards import habits_menu
+from features.games.keyboards import games_menu
+from features.workouts.keyboards import workouts_menu
+from features.help.keyboards import help_menu
 
 
 class HandlerMainMenu:

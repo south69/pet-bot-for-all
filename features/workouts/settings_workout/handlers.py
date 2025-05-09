@@ -1,8 +1,8 @@
 from aiogram import Router
 from aiogram.types import Message
 from main_keyboards import main_menu
-from functions.workouts.keyboards_workouts import workouts_menu
-from functions.workouts.settings_workout.keyboards_settings_workout import settings_workout_menu, trainings_workout_menu, exercise_workout_menu
+from features.workouts.keyboards import workouts_menu
+from features.workouts.settings_workout.keyboards import settings_workout_menu, trainings_workout_menu, exercise_workout_menu
 
 
 class HandlerSettingsWorkout():

@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message
 from main_keyboards import main_menu
-from functions.help.keyboards_help import help_menu
+from features.help.keyboards import help_menu
 
 class HandlerHelpMenu():
     def __init__(self):

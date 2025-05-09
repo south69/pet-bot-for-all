@@ -1,5 +1,5 @@
 # 🤖 Telegram Bot: Help for all
-Написан на Python с использованием фреймворка `aiogram`
+Version 1.1
 
 
 ## Стек
@@ -22,50 +22,49 @@
 
 ```bash
 .
-
-├── functions
+├── config
+│   ├── config.py
+│   └── config_functions.py
+├── docker
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── features
 │   ├── games
-│   │   ├── game_irregular_verbs
-│   │   │   ├── game_irregular_verbs_service.py
-│   │   │   ├── handler_game_irregular_verbs.py
-│   │   │   ├── irregular_verbs_repository.py
-│   │   │   └── keyboard_game_irregular_verbs.py
-│   │   ├── handler_games_menu.py
-│   │   └── keyboards_games.py
+│   │   ├── irregular_verbs
+│   │   │   ├── handlers.py
+│   │   │   ├── keyboards.py
+│   │   │   ├── repo.py
+│   │   │   └── service.py
+│   │   ├── handlers.py
+│   │   └── keyboards.py
 │   ├── habits
-│   │   ├── fsm_add_habit.py
-│   │   ├── habits_repository.py
-│   │   ├── handler_add_habit.py
-│   │   ├── handler_habits_menu.py
-│   │   ├── keyboards_add_habit.py
-│   │   └── keyboards_habits.py
+│   │   ├── handlers.py
+│   │   ├── keyboards.py
+│   │   ├── repo.py
+│   │   └── states.py
 │   ├── help
-│   │   ├── handler_help_menu.py
-│   │   └── keyboards_help.py
+│   │   ├── handler.py
+│   │   └── keyboards.py
 │   ├── reminders
 │   │   ├── handler_reminders_menu.py
-│   │   └── keyboards_reminders.py
+│   │   └── keyboards.py
 │   └── workouts
 │       ├── settings_workout
-│       │   ├── handler_settings_workout.py
-│       │   └── keyboards_settings_workout.py
+│       │   ├── handlers.py
+│       │   └── keyboards.py
 │       ├── start_workout
-│       │   ├── handler_start_workout.py
-│       │   └── keyboards_start_workout.py
-│       ├── handler_workouts_menu.py
-│       └── keyboards_workouts.py
+│       │   ├── handler.py
+│       │   └── keyboards.py
+│       ├── handlers.py
+│       └── keyboards.py
 ├── initdb
 │   ├── 01_create_tables.sql
 │   └── 02_insert_seed_data.sql
-├── Dockerfile
-├── docker-compose.yml
-├── README.md
 ├── .env # не публикуется
 ├── .gitignore # не публикуется
-├── config.py
-├── config_functions.py
-├── docker-compose.yml
+├── README.md
 ├── handler_main_menu.py
 ├── main.py
 ├── main_keyboards.py
 └── requirements.txt
+
