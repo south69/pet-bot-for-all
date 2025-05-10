@@ -32,3 +32,22 @@ confirm_habit_kb = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
+
+# __Удаление привычки__
+
+# Клавиатура для выбора "Я знаю id привычки, которую хочу удалить?"
+did_i_know_id_habit = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="I know")],
+        [KeyboardButton(text="Don't know")]
+    ]
+)
+
+# Клавиатура подтверждения удаления
+confirm_delete_habit_kb = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text='Delete')],
+        [KeyboardButton(text='Cancel')]
+    ],
+    resize_keyboard=True
+)

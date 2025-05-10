@@ -39,9 +39,46 @@ class HabitsRepository:
                     username,
                     created_at,
                     None,
-                    None
+                    None,
                 )
             )
+
+    def show_habit(self, user_id):
+
+        with self.conn.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT 
+                    id,
+                    name,
+                    status,
+                    time_notification,
+                    last_notification
+                FROM bfa_habits.habits
+                WHERE status != 'deleted'
+                    AND user_id = %s
+                """, (user_id,)
+            )
+            return cursor.fetchall()
+
+    def delete_habit(self, id, user_id):
+        
+        deleted_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        with self.conn.cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE bfa_habits.habits
+                SET status = 'deleted',
+                    deleted_at = %s
+                WHERE id = %s
+                    AND user_id = %s
+                """,(deleted_at, 
+                     id, 
+                     user_id,)
+            )
+
+
 
     def close(self):
         self.conn.close()

@@ -1,12 +1,15 @@
 from aiogram import Router
 from aiogram.types import Message, CallbackQuery, BufferedInputFile
+from aiogram import F
+
 from main_keyboards import main_menu
 from features.games.keyboards import games_menu
-from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu, games_irregular_verbs_choose_level, stats_repiod_kb
+from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu, games_irregular_verbs_choose_level, stats_period_kb
 from features.games.irregular_verbs.service import IrregularVerbsGame, IrregularVerbsRepository
 
 import matplotlib.pyplot as plt
 from io import BytesIO
+
 
 class HandlerGameIrregularVerbs():
     def __init__(self):
@@ -23,7 +26,7 @@ class HandlerGameIrregularVerbs():
         await message.answer("Choose the level for game", reply_markup=games_irregular_verbs_choose_level)
 
     async def statistics_irregular_verbs(self, message: Message):
-        await message.answer("Choose period:", reply_markup=stats_repiod_kb)
+        await message.answer("Choose period:", reply_markup=stats_period_kb)
 
     async def show_statistics_period(self, callback: CallbackQuery):
         period = callback.data.split(":")[1]

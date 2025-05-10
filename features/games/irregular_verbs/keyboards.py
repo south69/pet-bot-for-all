@@ -22,7 +22,7 @@ games_irregular_verbs_choose_level = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-stats_repiod_kb = InlineKeyboardMarkup(
+stats_period_kb = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text="Today", callback_data="stats:today"),
