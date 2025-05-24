@@ -1,5 +1,5 @@
 # 🤖 Telegram Bot: Help for all
-Version 1.1
+Version 1.2
 
 
 ## Стек
@@ -16,29 +16,29 @@ Version 1.1
 - 🛠 Привычки (Habits) - coming soon
 - ✅ Игры (Irregular Verbs)
 - 🛠 Спорт (Workouts) - coming soon
-- ✅ Помощь и обратная связь
+- 🛠 Помощь и обратная связь
 
 ## Структура проекта
 
 ```bash
-.
-├── config
-│   ├── config.py
-│   └── config_functions.py
-├── docker
-│   ├── Dockerfile
-│   └── docker-compose.yml
+
 ├── features
 │   ├── games
 │   │   ├── irregular_verbs
-│   │   │   ├── handlers.py
+│   │   │   ├── handler_game_irregular_verbs.py
+│   │   │   ├── handler_level_game.py
 │   │   │   ├── keyboards.py
 │   │   │   ├── repo.py
 │   │   │   └── service.py
-│   │   ├── handlers.py
+│   │   ├── handler_games_menu.py
 │   │   └── keyboards.py
 │   ├── habits
-│   │   ├── handlers.py
+│   │   ├── handlers
+│   │   │   ├── add_habit.py
+│   │   │   ├── change_habit.py
+│   │   │   ├── delete_habit.py
+│   │   │   └── show_my_habit.py
+│   │   ├── handler_habits_menu.py
 │   │   ├── keyboards.py
 │   │   ├── repo.py
 │   │   └── states.py
@@ -62,10 +62,13 @@ Version 1.1
 │   └── 02_insert_seed_data.sql
 ├── .env # не публикуется
 ├── .gitignore # не публикуется
-├── README.md
 ├── Dockerfile
+├── README.md
+├── config.py
+├── config_functions.py
 ├── docker-compose.yml
 ├── handler_main_menu.py
 ├── main.py
 ├── main_keyboards.py
-└── requirements.txt
+├── requirements.txt
+└── routers_registry.py
