@@ -1,6 +1,8 @@
 import psycopg2
 import random
 import os
+import logging
+
 from datetime import datetime
 
 from config import POSTGRES_URL
@@ -8,8 +10,15 @@ from config import POSTGRES_URL
 
 class HabitsRepository:
     def __init__(self):
-        self.conn = psycopg2.connect(POSTGRES_URL)
-        self.conn.autocommit = True
+        # self.conn = psycopg2.connect(POSTGRES_URL)
+        # self.conn.autocommit = True
+        try:
+            self.conn = psycopg2.connect(POSTGRES_URL)
+            self.conn.autocommit = True
+            logging.debug("[DB Habits repo] Успешное подключение к базе данных")
+        except Exception as e:
+            logging.error(f"[DB Habits repo] Ошибка подключения к БД: {e}")
+            raise      
     
     def add_habit(self, 
                   username: str,
@@ -77,8 +86,6 @@ class HabitsRepository:
                      id, 
                      user_id,)
             )
-
-
 
     def close(self):
         self.conn.close()

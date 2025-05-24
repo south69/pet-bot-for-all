@@ -7,7 +7,7 @@ help_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="Suggest update")],
         [KeyboardButton(text="Bug report")],
         [KeyboardButton(text="Ask developer")],
-        [KeyboardButton(text="Back main menu")]
+        [KeyboardButton(text="Exit help")]
     ],
     resize_keyboard=True
 

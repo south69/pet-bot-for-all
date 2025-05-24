@@ -11,7 +11,7 @@ class HandlerRemindersMenu():
         self.router.message.register(self.change_habit_handler, lambda message: message.text == "Change remind")
         self.router.message.register(self.delete_habit_handler, lambda message: message.text == "Delete remind")
         self.router.message.register(self.show_my_habits_handler, lambda message: message.text == "Show my reminders")
-        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Back main menu")
+        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Exit reminders")
 
     
     async def add_habit_handler(self, message: Message):

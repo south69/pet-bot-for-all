@@ -11,7 +11,7 @@ class HandlerStartWorkoutMenu():
 
         self.router.message.register(self.select_training, lambda message: message.text == "Select training")
         self.router.message.register(self.choose_training, lambda message: message.text == "Choose training")
-        self.router.message.register(self.start_workout_go_back, lambda message: message.text =="Go back to workouts menu")
+        self.router.message.register(self.start_workout_go_back, lambda message: message.text =="Exit training")
 
     
     async def select_training(self, message: Message):

@@ -11,7 +11,7 @@ class HandlerHelpMenu():
         self.router.message.register(self.suggest_update_handler, lambda message: message.text == "Suggest update")
         self.router.message.register(self.bug_report_handler, lambda message: message.text == "Bug report")
         self.router.message.register(self.ask_developer_handler, lambda message: message.text == "Ask developer")
-        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Back main menu")
+        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Exit help")
 
     
     async def about_bot_handler(self, message: Message):

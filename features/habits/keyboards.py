@@ -7,7 +7,7 @@ habits_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="Change habit")],
         [KeyboardButton(text="Delete habit")],
         [KeyboardButton(text="Show my habits")],
-        [KeyboardButton(text="Back main menu")]
+        [KeyboardButton(text="Exit habits")]
     ],
     resize_keyboard=True
 

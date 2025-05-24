@@ -2,6 +2,7 @@ from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
 import psycopg2
 import os
+import logging
 
 from config import POSTGRES_URL
 from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu, games_irregular_verbs_choose_level
@@ -17,12 +18,13 @@ class IrregularVerbsGame:
 
         self.session_keyboard = ReplyKeyboardMarkup(
             keyboard=[
-                [KeyboardButton(text="Go back"), KeyboardButton(text="Don't know")]
+                [KeyboardButton(text="leave the game"), KeyboardButton(text="Don't know")]
             ],
             resize_keyboard=True
         )
 
     async def start_game(self, message: Message, level: str):
+        logging.debug(f"[start_game] Пользователь: {message.from_user.username}, уровень: {level}")
         user_id = message.from_user.id
         verb = self.db.get_random_verb()
 
@@ -58,6 +60,7 @@ class IrregularVerbsGame:
         )
         
     async def check_answer(self, message: Message):
+        logging.debug(f"[check_answer] Ответ от пользователя {message.from_user.username}: {message.text}")
         user_id = message.from_user.id
         state = self.user_states.get(user_id)
 
@@ -67,7 +70,7 @@ class IrregularVerbsGame:
         
         user_input  = message.text.strip().lower()
 
-        if user_input  == "go back":
+        if user_input  == "leave the game":
             state["in_game"] = False
             await message.answer(
                 "You've left the game. Please choose a level again",

@@ -7,7 +7,7 @@ reminders_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="Change remind")],
         [KeyboardButton(text="Delete remind")],
         [KeyboardButton(text="Show my reminders")],
-        [KeyboardButton(text="Back main menu")]
+        [KeyboardButton(text="Exit reminders")]
     ],
     resize_keyboard=True
 

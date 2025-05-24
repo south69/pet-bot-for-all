@@ -31,7 +31,7 @@ class HandlerTrainingsWorkoutMenu():
         self.router.message.register(self.show_trainings_handler,lambda message: message.text == "Show trainings")
         self.router.message.register(self.edit_trainings_handler,lambda message: message.text == "Edit trainings")
         self.router.message.register(self.delete_trainings_handler,lambda message: message.text == "Delete trainings")
-        self.router.message.register(self.go_back_trainings_handler,lambda message: message.text == "Go back")
+        self.router.message.register(self.go_back_trainings_handler,lambda message: message.text == "Exit trainings")
 
     async def show_trainings_handler(self, message: Message):
         await message.answer("Go to show training (in progress)", reply_markup=trainings_workout_menu)
@@ -53,7 +53,7 @@ class HandlerExerciseWorkoutMenu():
         self.router.message.register(self.show_exercise_handler,lambda message: message.text == "Show exercise")
         self.router.message.register(self.edit_exercise_handler,lambda message: message.text == "Edit exercise")
         self.router.message.register(self.delete_exercise_handler,lambda message: message.text == "Delete exercise")
-        self.router.message.register(self.go_back_exercise_handler,lambda message: message.text == "Go back")
+        self.router.message.register(self.go_back_exercise_handler,lambda message: message.text == "Exit exercise")
 
     async def show_exercise_handler(self, message: Message):
         await message.answer("Go to show exercise (in progress)", reply_markup=exercise_workout_menu)

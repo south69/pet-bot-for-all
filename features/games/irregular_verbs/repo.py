@@ -1,6 +1,7 @@
 import psycopg2
 import random
 import os
+import logging
 import matplotlib.pyplot as plt
 from io import BytesIO
 from aiogram.types import BufferedInputFile
@@ -9,10 +10,18 @@ from config import POSTGRES_URL
 
 class IrregularVerbsRepository:
     def __init__(self):
-        self.conn = psycopg2.connect(POSTGRES_URL)
-        self.conn.autocommit = True
+        # self.conn = psycopg2.connect(POSTGRES_URL)
+        # self.conn.autocommit = True
+        try:
+            self.conn = psycopg2.connect(POSTGRES_URL)
+            self.conn.autocommit = True
+            logging.debug("[DB] Успешное подключение к базе данных")
+        except Exception as e:
+            logging.error(f"[DB] Ошибка подключения к БД: {e}")
+            raise        
 
     def get_random_verb(self):
+        logging.debug("[get_random_verb] Получаем случайный глагол...")
         with self.conn.cursor() as cursor:
             cursor.execute("""
                 SELECT id, infinitive, past_simple_v2, past_participle_v3, translate_word
@@ -20,9 +29,11 @@ class IrregularVerbsRepository:
                 ORDER BY RANDOM()
                 LIMIT 1
             """)
+            logging.warning("[get_random_verb] Не удалось получить глагол. Таблица пустая или нет соединения")
             row = cursor.fetchone()
 
         if row:
+            logging.debug(f"[get_random_verb] Получен глагол: {row}")
             return {
                 "id": row[0],
                 "infinitive": row[1],
@@ -34,6 +45,7 @@ class IrregularVerbsRepository:
     
     def create_log_irregular_verb(self, *, user_id, username, game_id, game_name,
                                   level_game, word_given, word_answered, correct_flg):
+        logging.debug(f"[create_log] user_id={user_id}, word_given={word_given}, word_answered={word_answered}, correct={correct_flg}")
         with self.conn.cursor() as cursor:
             cursor.execute(
                 """

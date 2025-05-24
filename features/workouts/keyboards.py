@@ -6,7 +6,7 @@ workouts_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="Start")],
         [KeyboardButton(text="Progress")],
         [KeyboardButton(text="Settings")],
-        [KeyboardButton(text="Back main menu")]
+        [KeyboardButton(text="Exit workouts")]
     ],
     resize_keyboard=True
 )

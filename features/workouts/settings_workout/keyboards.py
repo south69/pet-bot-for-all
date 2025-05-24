@@ -6,7 +6,7 @@ settings_workout_menu = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="Trainings")],
         [KeyboardButton(text="Exercise")],
-        [KeyboardButton(text="Go back to workouts menu")]
+        [KeyboardButton(text="Exit settings")]
     ],
     resize_keyboard=True
 )
@@ -15,9 +15,9 @@ settings_workout_menu = ReplyKeyboardMarkup(
 trainings_workout_menu = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="Show trainings")],
-        [KeyboardButton(text="Edit stainings")],
-        [KeyboardButton(text="Delete stainings")],
-        [KeyboardButton(text="Go back")]
+        [KeyboardButton(text="Edit trainings")],
+        [KeyboardButton(text="Delete trainings")],
+        [KeyboardButton(text="Exit trainings")]
     ],
     resize_keyboard=True
 )
@@ -27,7 +27,7 @@ exercise_workout_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="Show exercise")],
         [KeyboardButton(text="Edit exercise")],
         [KeyboardButton(text="Delete exercise")],
-        [KeyboardButton(text="Go back")]
+        [KeyboardButton(text="Exit exercise")]
     ],
     resize_keyboard=True
 )

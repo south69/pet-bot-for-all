@@ -15,7 +15,7 @@ class HandlerWorkoutsMenu():
         self.router.message.register(self.start_workouts_handler, lambda message: message.text == "Start")
         self.router.message.register(self.progress_workouts_handler, lambda message: message.text == "Progress")
         self.router.message.register(self.settings_workouts_handler, lambda message: message.text == "Settings")
-        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Back main menu")
+        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Exit workouts")
 
     
     async def start_workouts_handler(self, message: Message):

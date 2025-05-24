@@ -8,7 +8,7 @@ start_workout_choose_menu = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="Select training")],
         [KeyboardButton(text="Choose training")],
-        [KeyboardButton(text="Go back to workouts menu")]
+        [KeyboardButton(text="Exit training")]
     ],
     resize_keyboard=True
 )

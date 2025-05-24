@@ -1,6 +1,6 @@
 # Включение/отключение функциональных модулей бота
-ENABLE_REMINDERS = True
-ENABLE_HABITS = True
+ENABLE_REMINDERS = False
+ENABLE_HABITS = False
 ENABLE_GAMES = True
-ENABLE_HELP = True
-ENABLE_WORKOUTS = True
+ENABLE_HELP = False
+ENABLE_WORKOUTS = False

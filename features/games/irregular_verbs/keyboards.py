@@ -1,13 +1,14 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 from features.games.keyboards import games_menu
 from main_keyboards import main_menu
+# from features.games.irregular_verbs.handlers import HandlerGameIrregularVerbs
 
 games_irregular_verbs_menu = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="Play")],
         [KeyboardButton(text="Statistics")],
         [KeyboardButton(text="Rules")],
-        [KeyboardButton(text="Back main menu")]
+        [KeyboardButton(text="Back to games menu")]
     ],
     resize_keyboard=True
 )
@@ -17,7 +18,7 @@ games_irregular_verbs_choose_level = ReplyKeyboardMarkup(
         [KeyboardButton(text="Easy")],
         [KeyboardButton(text="Medium")],
         [KeyboardButton(text="Hard")],
-        [KeyboardButton(text="Go back")]
+        [KeyboardButton(text="Exit level selection menu")]
     ],
     resize_keyboard=True
 )
