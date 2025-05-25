@@ -1,22 +1,23 @@
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.types import Message
+from aiogram.fsm.context import FSMContext
+
 from main_keyboards import main_menu
 from features.games.keyboards import games_menu
 from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu
-from features.games.irregular_verbs.handler_game_irregular_verbs import HandlerGameIrregularVerbs
+from main_states import MainStates
 
-class HandlerGamesMenu():
+class HandlerGamesMenu:
     def __init__(self):
-        self.router = Router()
+        self.router = Router(name="games")
 
-        self.router.include_router(HandlerGameIrregularVerbs().router)
+        # Используем состояние MainStates.in_games
+        self.router.message.register(self.game_irregular_verbs_handler,MainStates.in_games, F.text == "Irregular verbs")
+        self.router.message.register(self.back_main_menu_handler,MainStates.in_games, F.text == "Exit games")
 
-        self.router.message.register(self.game_irregular_verbs_handler, lambda message: message.text == "Irregular verbs")
-        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Exit games")
-
-    
-    async def game_irregular_verbs_handler(self, message: Message):
+    async def game_irregular_verbs_handler(self, message: Message, state: FSMContext):
         await message.answer("Go to game Irregular Verbs!", reply_markup=games_irregular_verbs_menu)
-    
-    async def back_main_menu_handler(self, message: Message):
-        await message.answer('Go to main menu', reply_markup=main_menu)
+
+    async def back_main_menu_handler(self, message: Message, state: FSMContext):
+        await state.set_state(MainStates.in_main_menu)
+        await message.answer("Back to main menu", reply_markup=main_menu)

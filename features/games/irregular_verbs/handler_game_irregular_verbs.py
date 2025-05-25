@@ -2,10 +2,14 @@ from aiogram import Router
 from aiogram.types import Message, CallbackQuery, BufferedInputFile
 from aiogram import F
 
+from aiogram.fsm.state import State
+
 # from main_keyboards import main_menu
 from features.games.keyboards import games_menu
 from features.games.irregular_verbs.keyboards import games_irregular_verbs_menu, games_irregular_verbs_choose_level, stats_period_kb
 from features.games.irregular_verbs.repo import IrregularVerbsRepository
+
+from main_states import MainStates
 
 import matplotlib.pyplot as plt
 from io import BytesIO
@@ -16,12 +20,12 @@ class HandlerGameIrregularVerbs():
     def __init__(self):
         self.router = Router()
 
-        self.router.message.register(self.start_play_irregular_verbs, lambda message: message.text == "Play")
-        self.router.message.register(self.statistics_irregular_verbs, lambda message: message.text == "Statistics")
-        self.router.message.register(self.rules_irregular_verbs, lambda message: message.text == "Rules")
-        self.router.message.register(self.back_main_menu_handler, lambda message: message.text =="Back to games menu")
+        self.router.message.register(self.start_play_irregular_verbs, MainStates.in_games, F.text == "Play")
+        self.router.message.register(self.statistics_irregular_verbs,MainStates.in_games, F.text == "Statistics")
+        self.router.message.register(self.rules_irregular_verbs,MainStates.in_games, F.text == "Rules")
+        self.router.message.register(self.back_main_menu_handler,MainStates.in_games, F.text == "Back to games menu")
 
-        self.router.callback_query.register(self.show_statistics_period, lambda c: c.data.startswith("stats:"))
+        self.router.callback_query.register(self.show_statistics_period,MainStates.in_games, F.data.startswith("stats:"))
     
     async def start_play_irregular_verbs(self, message: Message):
         await message.answer("Choose the level for game", reply_markup=games_irregular_verbs_choose_level)

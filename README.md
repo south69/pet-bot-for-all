@@ -16,12 +16,11 @@ Version 1.2
 - 🛠 Привычки (Habits) - coming soon
 - ✅ Игры (Irregular Verbs)
 - 🛠 Спорт (Workouts) - coming soon
-- 🛠 Помощь и обратная связь
+- ✅ Помощь и обратная связь
 
 ## Структура проекта
 
 ```bash
-
 ├── features
 │   ├── games
 │   │   ├── irregular_verbs
@@ -70,5 +69,7 @@ Version 1.2
 ├── handler_main_menu.py
 ├── main.py
 ├── main_keyboards.py
+├── main_states.py
 ├── requirements.txt
 └── routers_registry.py
+

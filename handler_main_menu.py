@@ -1,8 +1,10 @@
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import CommandStart
+from aiogram.fsm.context import FSMContext
 
 from main_keyboards import main_menu
+from main_states import MainStates
 
 from features.reminders.keyboards import reminders_menu
 from features.habits.keyboards import habits_menu
@@ -17,11 +19,11 @@ class HandlerMainMenu:
 
         self.router.message.register(self.start_handler, CommandStart())
 
-        self.router.message.register(self.reminders_handler, lambda message: message.text == "Reminders")
-        self.router.message.register(self.habits_handler, lambda message: message.text == "Habits")
-        self.router.message.register(self.games_handler, lambda message: message.text == "Games")
-        self.router.message.register(self.workouts_handler, lambda message: message.text == 'Workouts')
-        self.router.message.register(self.help_handler, lambda message: message.text == "Help")
+        self.router.message.register(self.reminders_handler, lambda message: message.text == "🛠 Reminders")
+        self.router.message.register(self.habits_handler, lambda message: message.text == "🛠 Habits")
+        self.router.message.register(self.games_handler, lambda message: message.text == "🎮 Games")
+        self.router.message.register(self.workouts_handler, lambda message: message.text == '🛠 Workouts')
+        self.router.message.register(self.help_handler, lambda message: message.text == "🧙‍♂️ Help")
 
     async def start_handler(self, message:Message):
         await message.answer(
@@ -34,11 +36,13 @@ class HandlerMainMenu:
     async def habits_handler(self, message: Message):
         await message.answer('Go to Habits', reply_markup=habits_menu)
 
-    async def games_handler(self, message: Message):
+    async def games_handler(self, message: Message, state: FSMContext):
+        await state.set_state(MainStates.in_games)
         await message.answer('Go to Games', reply_markup=games_menu)
 
     async def workouts_handler(self, message: Message):
         await message.answer('Go to Workouts', reply_markup=workouts_menu)
 
-    async def help_handler(self, message: Message):
+    async def help_handler(self, message: Message, state: FSMContext):
+        await state.set_state(MainStates.in_help)
         await message.answer('Go to Help', reply_markup=help_menu)

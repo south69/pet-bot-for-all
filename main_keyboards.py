@@ -4,9 +4,9 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="Reminders"), KeyboardButton(text="Habits")],
-        [KeyboardButton(text="Games"), KeyboardButton(text='Workouts')],
-        [KeyboardButton(text="Help")]
+        [KeyboardButton(text="🛠 Reminders"), KeyboardButton(text="🛠 Habits")],
+        [KeyboardButton(text="🎮 Games"), KeyboardButton(text='🛠 Workouts')],
+        [KeyboardButton(text="🧙‍♂️ Help")]
     ],
     resize_keyboard=True
 )
